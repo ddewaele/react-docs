@@ -1,7 +1,26 @@
 Migration guide - ES6
 
- npm install jquery --save
 
+## Third party libraries
+
+When needing to work with third party frameworks, everything should be installed via npm.
+
+For example if jQeury is needed, you execute the following commmand:
+
+```
+npm install jquery --save
+```
+
+And then reference it in your conponents like this:
+
+```
+import React, { Component, PropTypes } from 'react';
+import $ from 'jquery';
+
+class BoardSelection extends Component {
+....
+}
+```
 
 ## React components
 
@@ -121,3 +140,7 @@ If you simply export the component, you'll get the ofllowing errors when executi
 ```
 Uncaught TypeError: _RestApi2.default.retrieveGpioDirection is not a functionretrieveGpioDirection @ Gpio.js?37ae:69proxiedMethod @ createPrototypeProxy.js?c130:44componentDidMount @ Gpio.js?37ae:48proxiedComponentDidMount @ createPrototypeProxy.js?c130:61assign.notifyAll @ CallbackQueue.js?bea8:65ON_DOM_READY_QUEUEING.close @ ReactReconcileTransaction.js?9178:81Mixin.closeAll @ Transaction.js?6dff:202Mixin.perform @ Transaction.js?6dff:149Mixin.perform @ Transaction.js?6dff:136assign.perform @ ReactUpdates.js?ce09:86flushBatchedUpdates @ ReactUpdates.js?ce09:147wrapper @ ReactPerf.js?ef93:66Mixin.closeAll @ Transaction.js?6dff:202Mixin.perform @ Transaction.js?6dff:149ReactDefaultBatchingStrategy.batchedUpdates @ ReactDefaultBatchingStrategy.js?ef70:62batchedUpdates @ ReactUpdates.js?ce09:94ReactEventListener.dispatchEvent @ ReactEventListener.js?2365:204
 ```
+
+## React Bootstrap
+
+Not really related to migrating to the react-quickstart project, but part of this migration also involved introducing [React Bootstrap] https://github.com/react-bootstrap/react-bootstrap
