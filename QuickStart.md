@@ -1,3 +1,14 @@
+# Introduction
+
+## Starting the app
+
+When you run ```npm start```, it will 
+
+- launch Node.js app at http://localhost:5000
+- fires up Browsersync on top of it that runs on http://localhost:3000/ and injects Browsersync and HMR specific JavaScript code into web pages
+
+
+
 # Routing
 
 ![routing](./images/routing.png)
@@ -140,23 +151,45 @@ Notice how the CSS styles are auto-generated (Feedback_root_LW7)
 ```
 
 
+## Release mode
+
+Using the release flag on ```start```,```build```,```deploy```,...
+
+```
+npm start -- --release
+```
+
+## API calls
+
+Performing api calls
+
+
+```
+on('/products', async () => {
+  const response = await fetch('http://api.example.com/products');
+  const products = await response.json();
+  return <ProductsPage {...products} />;
+});
+```
 
 ## References
 
+
 ### WebSequenceDiagrams
+
+Paste the following text in [WebSequenceDiagrams](https://www.websequencediagrams.com/)
 
 ```
 title React Starter Kit
 
 Client->Browser: Initial page request ( / )
-
 Browser->Server: HTTP request ( / ) to server.js
-note right of Server : Server includes the content route
+note right of Server : Server includes the ContentApi route
 note left of Browser : Page is loaded from bookmark / new browser window
 Server->React-Routing: Dispatches a path ( / )
-React-Routing->Content: Fetch index.jade from content server
-note left of Content: (jade used because no index component found)
-React-Routing->React-Routing: Wrap the Jade HTML in a ContentPage component
+React-Routing->ContentApi: Fetch the jade template from content server
+note left of ContentApi: (fetchess jade tempate because no index component found)
+React-Routing->React-Routing: Wrap the generated Jade HTML in a ContentPage component
 React-Routing->Server: returns state and component
 note left of Server: Server renders the ReactJS component
 Server->Browser : write the rendered component to the response
@@ -172,14 +205,27 @@ note right of React-Routing: (finds a ReactJS component so no jade template need
 React-Routing->Server: returns state and component
 note left of Server: Server renders the ReactJS component
 Server->Browser : write the rendered component to the response
-Browser->Client: contactPage is shown
+Browser->Client: contactPage page is shown
 
 Client->Browser: Load a page URL ( /about)
 note left of Browser : Page is loaded from bookmark / new browser window
 Browser->Server: HTTP request ( /page ) to server
 Server->React-Routing: Dispatches a path ( /page )
-React-Routing->React-Routing: Fetch the jade template from content server
+React-Routing->ContentApi: Fetch the jade template from content server
+note left of ContentApi: (jade tempate used because no index component found)
 React-Routing->Server: returns state and component
 note left of Server: Server renders the ReactJS component
 Server->Browser : write the rendered component to the response
+Browser->Client: about page is shown
+
+
+Client->Browser: Javascript function ( /about)
+note left of Browser : Page is loaded via javascript (onClick)
+Browser->React-Routing: Dispatches a path ( /page )
+React-Routing->React-Routing: Fetch the ReactJS component associated with route
+note left of Server: Server is bypassed completely
+React-Routing->Browser: returns state and component
+Browser->Browser: about component is rendered
+note left of Browser: Browser renders the component
+Browser->Client: about page is shown
 ```
