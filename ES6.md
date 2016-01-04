@@ -39,7 +39,6 @@ Open up [JSBin](https://jsbin.com) and insert the following HTML.
 
 Enter the Javascript tab and select ```ES6/Babel``` and write the simplest component possible
 
-
 ```
 const MyApp = () => {
 	return (	
@@ -54,7 +53,6 @@ This is called a stateless function component. We can make it even more simpler 
 
 - Implicit return (no rreturn statement needed)
 - Destructuring the props object
-
 
 We can externalize the text and pass it on as a property.
 
@@ -86,8 +84,74 @@ var MyApp = function MyApp() {
 };
 ```
 
+### More complex objects
 
+If we want to create a React Component with actual methods we can do it like this :
 
+```
+
+import React, { Component, PropTypes } from 'react'
+
+class Counter extends Component {
+  
+  	doSomething() {
+  		// do something
+	}
+
+  	render() {
+    	const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props
+    
+	    return (
+	      <p>
+	        Clicked: {counter} times
+	        {' '}
+	        <button onClick={increment}>+</button>
+	        {' '}
+	        <button onClick={decrement}>-</button>
+	        {' '}
+	        <button onClick={incrementIfOdd}>Increment if odd</button>
+	        {' '}
+	        <button onClick={() => incrementAsync()}>Increment async</button>
+	      </p>
+
+	      </div>
+	    )
+  	}
+}
+```
+
+If you're using something like JSBin just remember you can get a hold of the Component import by doing
+
+```
+const {Component} = React;
+// equals the following : 
+//    var _React = React;
+//    var Component = _React.Component;
+```
+## Patterns
+
+### Importing constants
+
+Given the following file
+
+```
+// /constants/ActionTypes
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const CHECKOUT_REQUEST = 'CHECKOUT_REQUEST'
+export const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS'
+export const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE'
+export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
+```
+
+You can import all these constants as types, and then refer to them like this :
+
+```
+import * as types from '../constants/ActionTypes'
+
+export function addTodo(text) {
+  return { type: types.ADD_TODO, text }
+}
+```
 
 
 ## ReactJS components
