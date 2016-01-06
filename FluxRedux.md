@@ -15,16 +15,13 @@
 
 What actions are going to be taking place in your application.
 
-
-
-
 ## Steps to write your redux app 
 
 ### Create the container component
 
 Here's some boilerplate code to create a container component that wraps a presentation component
 
-```
+```js
 // containers/App.js
 
 import { bindActionCreators } from 'redux'

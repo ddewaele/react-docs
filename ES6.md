@@ -260,6 +260,24 @@ var counter = function counter(state, action) {
 };
 ```
 
+If you're getting passed on a reference in your function, you can extract and assign params like this :
+
+```js
+const Counter = ({value,onIncrement,onDecrement}) => {
+  (<div>test</div>)
+}
+```
+
+Results in 
+
+```js
+var counter = function counter(state, action) {
+  if (state === undefined) state = 0;
+
+  console.log("hello state " + state + " and action " + action);
+};
+```
+
 ## References
 
 - [ECMAScript6 features](https://github.com/lukehoban/es6features)
