@@ -224,6 +224,12 @@ var Counter = ({ increment, incrementIfOdd, incrementAsync, decrement, counter }
 
 We skip the render
 
+## Importing
+
+```
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/counter'
+```
+
 ## Functions
 
 Creating a function becomes very easy
@@ -277,6 +283,10 @@ var counter = function counter(state, action) {
   console.log("hello state " + state + " and action " + action);
 };
 ```
+
+## JSBIN Snippets
+
+- [React Child Contexts](https://jsbin.com/decexiriko/edit?js,output)
 
 ## References
 
